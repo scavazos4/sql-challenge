@@ -75,6 +75,40 @@ left join employees on employee_info.emp_no=employees.emp_no;
 --Data Analysis 5:
 --List first name, last name, and sex for employees whose 
 --first name is "Hercules" and last names begin with "B."
+select first_name, last_name, sex
+from employees
+where first_name LIKE 'Hercules' and last_name LIKE 'B%';
+
+--Data Analysis 6:
+--List all employees in the Sales department, including their
+--employee number, last name, first name, and department name.
+select distinct employee_info.emp_no, employees.last_name, employees.first_name, employee_info.dept_name
+from employee_info
+inner join employees on employees.emp_no=employee_info.emp_no
+where dept_name = 'Sales';
+
+--Data Analysis 7:
+--List all employees in the Sales and Development departments, including
+--their employee number, last name, first name, and department name.
+select distinct employee_info.emp_no, employees.last_name, employees.first_name, employee_info.dept_name
+from employee_info
+inner join employees on employees.emp_no=employee_info.emp_no
+where dept_name = 'Sales' or dept_name = 'Development';
+
+--Data Analysis 8:
+--In descending order, list the frequency count of employee 
+--last names, i.e., how many employees share each last name.
+select last_name, 
+	count(last_name) as count
+from employees
+group by last_name
+order by count desc
+
+
+
+
+
+
 
 
 
